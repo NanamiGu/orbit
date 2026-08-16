@@ -1,124 +1,172 @@
 import React from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { Check, ArrowLeft, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-export default function PricingSection() {
+export default function PricingSection({ onOpenActionModal }) {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
+  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
+
+  const tiers = [
+    {
+      name: t("pricing.t1Name"),
+      price: t("pricing.t1Price"),
+      period: "",
+      target: t("pricing.t1Target"),
+      highlighted: false,
+      cta: t("pricing.t1Cta"),
+      features: [
+        t("pricing.t1F1"),
+        t("pricing.t1F2"),
+        t("pricing.t1F3"),
+        t("pricing.t1F4"),
+      ],
+    },
+    {
+      name: t("pricing.t2Name"),
+      price: t("pricing.t2Price"),
+      period: t("pricing.t2Period"),
+      target: t("pricing.t2Target"),
+      highlighted: true,
+      badge: t("pricing.t2Badge"),
+      cta: t("pricing.t2Cta"),
+      features: [
+        t("pricing.t2F1"),
+        t("pricing.t2F2"),
+        t("pricing.t2F3"),
+        t("pricing.t2F4"),
+        t("pricing.t2F5"),
+        t("pricing.t2F6"),
+      ],
+    },
+    {
+      name: t("pricing.t3Name"),
+      price: t("pricing.t3Price"),
+      period: "",
+      target: t("pricing.t3Target"),
+      highlighted: false,
+      cta: t("pricing.t3Cta"),
+      features: [
+        t("pricing.t3F1"),
+        t("pricing.t3F2"),
+        t("pricing.t3F3"),
+        t("pricing.t3F4"),
+        t("pricing.t3F5"),
+      ],
+    },
+  ];
+
   return (
-    <div className="bg-slate-950 py-24 sm:py-32" id="pricing">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-slate-950 py-24 sm:py-32 relative border-t border-white/5" id="pricing">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-4">
-            اختر الباقة المناسبة لفعالياتك
+        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-4">
+            <span>{t("pricing.label")}</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+            {t("pricing.headline")}
           </h2>
-          <p className="text-lg text-slate-400">
-            ابدأ مع خططنا المرنة المصممة لتتوسع مع حجم أعمالك وتلبي كافة احتياجات تنظيم المعارض والمؤتمرات.
+
+          <p className="text-base sm:text-lg text-slate-300">
+            {t("pricing.subline")}
           </p>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
-          
-          {/* 1. Starter Plan */}
-          <div className="p-8 sm:p-10 rounded-3xl border border-transparent">
-            <h3 className="text-xl font-semibold text-white mb-2">الأساسية</h3>
-            <p className="text-slate-400 text-sm mb-6">للفعاليات الصغيرة والورش التدريبية</p>
-            <div className="mb-6">
-              <span className="text-4xl font-bold text-white">Free</span>
-              <span className="text-slate-500 text-sm ml-2">/ دائماً</span>
-            </div>
-            <button className="w-full py-3 px-4 rounded-lg border border-slate-700 text-white hover:bg-slate-800 transition-colors font-medium mb-8">
-              ابدأ مجاناً
-            </button>
-            <ul className="space-y-4">
-              {['تفعيل حتى 500 تذكرة', 'تطبيق مسح التذاكر الأساسي', 'دعم فني عبر البريد', 'تحليلات الحضور المبسطة'].map((feature, i) => (
-                <li key={i} className="flex items-center gap-3 text-slate-300 text-sm">
-                  <CheckCircle2 className="w-5 h-5 text-slate-500" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* 3 Pricing Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+          {tiers.map((tier) => (
+            <div
+              key={tier.name}
+              className={`relative rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 ${
+                tier.highlighted
+                  ? "bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 border-2 border-emerald-400 shadow-2xl shadow-emerald-500/10 lg:-translate-y-2"
+                  : "bg-slate-900/50 border border-white/10 hover:border-white/20"
+              }`}
+            >
+              {/* Highlight Badge */}
+              {tier.highlighted && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 text-xs font-extrabold shadow-md uppercase tracking-wider">
+                  {tier.badge}
+                </div>
+              )}
 
-          {/* 2. Premium Plan (Highlighted) */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-slate-900 border border-white/10 shadow-[0_0_40px_rgba(6,182,212,0.1)] relative scale-100 md:scale-105 z-10">
-            {/* شارة التميز */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-cyan-500 text-slate-950 text-xs font-bold rounded-full">
-              الأكثر طلباً
-            </div>
-            
-            <h3 className="text-xl font-semibold text-white mb-2">الاحترافية</h3>
-            <p className="text-slate-400 text-sm mb-6">للمنظمين المحترفين والمعارض</p>
-            <div className="mb-6">
-              <span className="text-4xl font-bold text-white">$49</span>
-              <span className="text-slate-500 text-sm ml-2">/ شهرياً</span>
-            </div>
-            <button className="w-full py-3 px-4 rounded-lg bg-cyan-500 text-slate-950 hover:bg-cyan-400 transition-colors font-bold mb-8 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-              اشترك الآن
-            </button>
-            <ul className="space-y-4">
-              {['عدد لا محدود من التذاكر', 'نظام إدارة البوابات المتعددة', 'تخصيص كامل لواجهة التسجيل', 'تصدير التقارير المتقدمة', 'أولوية الدعم الفني 24/7'].map((feature, i) => (
-                <li key={i} className="flex items-center gap-3 text-slate-200 text-sm">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-400" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-2 text-start">
+                  {tier.name}
+                </h3>
+                <p className="text-slate-400 text-xs sm:text-sm mb-6 text-start">
+                  {tier.target}
+                </p>
 
-          {/* 3. Business Plan */}
-          <div className="p-8 sm:p-10 rounded-3xl border border-transparent">
-            <h3 className="text-xl font-semibold text-white mb-2">الأعمال</h3>
-            <p className="text-slate-400 text-sm mb-6">للشركات ذات الفعاليات المستمرة</p>
-            <div className="mb-6">
-              <span className="text-4xl font-bold text-white">$99</span>
-              <span className="text-slate-500 text-sm ml-2">/ شهرياً</span>
-            </div>
-            <button className="w-full py-3 px-4 rounded-lg border border-slate-700 text-white hover:bg-slate-800 transition-colors font-medium mb-8">
-              اختر الباقة
-            </button>
-            <ul className="space-y-4">
-              {['كل ميزات الباقة الاحترافية', 'أدوات إدارة العارضين (Exhibitors)', 'ربط API متقدم (Webhooks)', 'توزيع الصلاحيات لفريق العمل'].map((feature, i) => (
-                <li key={i} className="flex items-center gap-3 text-slate-300 text-sm">
-                  <CheckCircle2 className="w-5 h-5 text-slate-500" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
+                {/* Price Display */}
+                <div className="mb-8 pb-6 border-b border-white/10 text-start">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl sm:text-4xl font-extrabold text-white font-mono-num">
+                      {tier.price}
+                    </span>
+                    {tier.period && (
+                      <span className="text-sm font-medium text-slate-400">
+                        {tier.period}
+                      </span>
+                    )}
+                  </div>
+                </div>
 
+                {/* Features list */}
+                <ul className="space-y-4 mb-8">
+                  {tier.features.map((feat, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm text-slate-200 text-start">
+                      <div
+                        className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                          tier.highlighted
+                            ? "bg-emerald-400/20 text-emerald-400"
+                            : "bg-white/10 text-slate-300"
+                        }`}
+                      >
+                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      </div>
+                      <span className="leading-snug">{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Action CTA Button */}
+              <button
+                type="button"
+                onClick={() => onOpenActionModal ? onOpenActionModal(`${tier.cta} - ${tier.name}`) : null}
+                className={`w-full py-4 px-6 rounded-xl font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
+                  tier.highlighted
+                    ? "bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 shadow-lg shadow-emerald-500/20 active:scale-[0.98]"
+                    : "bg-white/10 hover:bg-white/15 text-white border border-white/10"
+                }`}
+              >
+                <span>{tier.cta}</span>
+                <ArrowIcon className="w-4 h-4" />
+              </button>
+            </div>
+          ))}
         </div>
 
-        {/* Bottom Section: Organizations / Enterprise */}
-        <div className="mt-20 max-w-6xl mx-auto p-8 sm:p-12 rounded-3xl bg-slate-900/50 border border-white/5 flex flex-col lg:flex-row gap-12 items-center lg:items-start justify-between">
-          <div className="flex-1 text-center lg:text-start">
-            <h3 className="text-2xl font-bold text-white mb-4">خطة المؤسسات الكبرى</h3>
-            <p className="text-slate-400 mb-8 max-w-md mx-auto lg:mx-0">
-              هل تبحث عن حلول مخصصة، دعم حصري، أو تسعير مبني على حجم فعاليات ضخم؟ دعنا نناقش خطة مصممة خصيصاً لمؤسستك.
-            </p>
-            <button className="px-8 py-3 bg-white text-slate-950 font-bold rounded-lg hover:bg-slate-200 transition-colors">
-              تواصل مع المبيعات
-            </button>
-          </div>
-          
-          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-            {[
-              'مشاريع وفعاليات غير محدودة',
-              'لا حدود لعمليات المسح',
-              'خوادم مخصصة (Dedicated)',
-              'مدير حساب شخصي',
-              'فواتير مخصصة وعقود سنوية',
-              'ميزات أمان متطورة (SSO)'
-            ].map((feature, i) => (
-              <div key={i} className="flex items-center gap-3 text-slate-300 text-sm">
-                <CheckCircle2 className="w-5 h-5 text-cyan-500/70 shrink-0" />
-                {feature}
-              </div>
-            ))}
-          </div>
+        {/* Enterprise Note */}
+        <div className="mt-12 max-w-2xl mx-auto text-center p-6 rounded-2xl bg-slate-900/40 border border-white/10">
+          <p className="text-sm sm:text-base text-slate-300 font-medium mb-3">
+            {t("pricing.enterpriseNote")}
+          </p>
+          <button
+            type="button"
+            onClick={() => onOpenActionModal ? onOpenActionModal(t("pricing.enterpriseCta")) : null}
+            className="inline-flex items-center gap-2 text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors"
+          >
+            <span>{t("pricing.enterpriseCta")}</span>
+            <ArrowIcon className="w-4 h-4" />
+          </button>
         </div>
 
       </div>
-    </div>
+    </section>
   );
 }

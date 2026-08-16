@@ -1,38 +1,55 @@
 import React from 'react';
 
-const OrbitLogo = ({ className = "w-8 h-8 text-slate-900 dark:text-white" }) => {
+export default function OrbitLogo({ className = "w-8 h-8" }) {
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      className={`transition-colors duration-200 ${className}`}
-    >
-      {/* النواة المركزية (Central Core) */}
-      <circle 
-        cx="12" 
-        cy="12" 
-        r="3.5" 
-        fill="currentColor" 
-      />
-      
-      {/* المدار العلوي الأيمن (Top-Right Orbit) */}
-      <path 
-        d="M 4 12 A 8 8 0 0 1 17.65 6.35" 
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        strokeLinecap="round" 
-      />
-      
-      {/* المدار السفلي الأيسر (Bottom-Left Orbit) */}
-      <path 
-        d="M 20 12 A 8 8 0 0 1 6.35 17.65" 
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        strokeLinecap="round" 
-      />
-    </svg>
-  );
-};
+    <div className={`relative flex items-center justify-center ${className}`}>
+      <svg
+        viewBox="0 0 40 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-full"
+      >
+        <defs>
+          <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#10b981" />
+            <stop offset="50%" stopColor="#06b6d4" />
+            <stop offset="100%" stopColor="#3b82f6" />
+          </linearGradient>
+        </defs>
 
-export default OrbitLogo;
+        {/* Central Core */}
+        <circle cx="20" cy="20" r="5" fill="url(#orbitGrad)" />
+
+        {/* Outer Orbit Path 1 */}
+        <ellipse
+          cx="20"
+          cy="20"
+          rx="15"
+          ry="7"
+          transform="rotate(-28 20 20)"
+          stroke="url(#orbitGrad)"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeDasharray="75 15"
+        />
+
+        {/* Outer Orbit Path 2 */}
+        <ellipse
+          cx="20"
+          cy="20"
+          rx="15"
+          ry="7"
+          transform="rotate(45 20 20)"
+          stroke="url(#orbitGrad)"
+          strokeWidth="1.8"
+          strokeOpacity="0.75"
+          strokeLinecap="round"
+          strokeDasharray="60 20"
+        />
+
+        {/* Orbit Satellite Particle */}
+        <circle cx="31" cy="12" r="2" fill="#34d399" />
+      </svg>
+    </div>
+  );
+}
