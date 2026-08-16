@@ -1,0 +1,8 @@
+{
+  "title": "Bienvenue",
+  "start": "Texte de démarrage pour tester la configuration linguistique. Si vous pouvez lire ceci, les traductions fonctionnent.",
+  "language": "Langue",
+  "english": "Anglais",
+  "french": "Français",
+  "arabic": "Arabe"
+}

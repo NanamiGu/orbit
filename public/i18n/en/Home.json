@@ -1,0 +1,8 @@
+{
+  "title": "Welcome",
+  "start": "Start text to test the language configuration. If you can read this, translations are working.",
+  "language": "Language",
+  "english": "English",
+  "french": "French",
+  "arabic": "Arabic"
+}
