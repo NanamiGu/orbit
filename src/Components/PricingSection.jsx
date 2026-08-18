@@ -2,7 +2,7 @@ import React from 'react';
 import { Check, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-export default function PricingSection({ onOpenActionModal }) {
+export default function PricingSection() {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === 'ar';
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
@@ -82,13 +82,13 @@ export default function PricingSection({ onOpenActionModal }) {
               key={tier.name}
               className={`relative rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 ${
                 tier.highlighted
-                  ? "bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 border-2 border-emerald-400 shadow-2xl shadow-emerald-500/10 lg:-translate-y-2"
+                  ? "bg-linear-to-b from-slate-900 via-slate-900/90 to-slate-950 border-2 border-emerald-400 shadow-2xl shadow-emerald-500/10 lg:-translate-y-2"
                   : "bg-slate-900/50 border border-white/10 hover:border-white/20"
               }`}
             >
               {/* Highlight Badge */}
               {tier.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 text-xs font-extrabold shadow-md uppercase tracking-wider">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-linear-to-r from-emerald-400 to-teal-400 text-slate-950 text-xs font-extrabold shadow-md uppercase tracking-wider">
                   {tier.badge}
                 </div>
               )}
@@ -126,7 +126,7 @@ export default function PricingSection({ onOpenActionModal }) {
                             : "bg-white/10 text-slate-300"
                         }`}
                       >
-                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                        <Check className="w-3.5 h-3.5 stroke-3" />
                       </div>
                       <span className="leading-snug">{feat}</span>
                     </li>
@@ -135,18 +135,19 @@ export default function PricingSection({ onOpenActionModal }) {
               </div>
 
               {/* Action CTA Button */}
-              <button
-                type="button"
-                onClick={() => onOpenActionModal ? onOpenActionModal(`${tier.cta} - ${tier.name}`) : null}
+              <a
+                href="https://wa.me/213550000000"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`w-full py-4 px-6 rounded-xl font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
                   tier.highlighted
-                    ? "bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 shadow-lg shadow-emerald-500/20 active:scale-[0.98]"
+                    ? "bg-linear-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 shadow-lg shadow-emerald-500/20 active:scale-[0.98]"
                     : "bg-white/10 hover:bg-white/15 text-white border border-white/10"
                 }`}
               >
                 <span>{tier.cta}</span>
                 <ArrowIcon className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           ))}
         </div>
@@ -156,14 +157,15 @@ export default function PricingSection({ onOpenActionModal }) {
           <p className="text-sm sm:text-base text-slate-300 font-medium mb-3">
             {t("pricing.enterpriseNote")}
           </p>
-          <button
-            type="button"
-            onClick={() => onOpenActionModal ? onOpenActionModal(t("pricing.enterpriseCta")) : null}
+          <a
+            href="https://wa.me/213550000000"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors"
           >
             <span>{t("pricing.enterpriseCta")}</span>
             <ArrowIcon className="w-4 h-4" />
-          </button>
+          </a>
         </div>
 
       </div>

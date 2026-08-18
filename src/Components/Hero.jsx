@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-export default function Hero({ onOpenActionModal }) {
+export default function Hero() {
   const { t, i18n } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const isRtl = i18n.language === 'ar';
@@ -54,14 +54,13 @@ export default function Hero({ onOpenActionModal }) {
 
         {/* أزرار الإجراءات (CTAs) */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-10">
-          <button
-            type="button"
-            onClick={() => onOpenActionModal ? onOpenActionModal(t('hero.ctaPrimary')) : null}
+          <a
+            href="#pricing"
             className="w-full sm:w-auto px-8 py-4 bg-linear-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 rounded-xl text-base font-bold transition-all shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/40 active:scale-[0.98] flex items-center justify-center gap-2"
           >
             <span>{t('hero.ctaPrimary')}</span>
             <ArrowIcon className="w-5 h-5" />
-          </button>
+          </a>
 
           <a
             href="#how-it-works"

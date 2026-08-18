@@ -33,16 +33,7 @@
     "simWhatsappBody": "QR access ticket and link sent instantly to attendee.",
     "simBadge": "🇩🇿 Tailored for Algerian Events"
   },
-  "proof": {
-    "stat1Num": "3",
-    "stat1Label": "Organizations in Algiers",
-    "stat2Num": "+20",
-    "stat2Label": "Pilot Events",
-    "stat3Num": "0",
-    "stat3Label": "Paper Sheets Printed",
-    "stat4Num": "< 2 s",
-    "stat4Label": "Average Scan Speed"
-  },
+  
   "features": {
     "label": "What ORBIT Delivers",
     "headline": "Everything you need to manage your event in one place",
@@ -169,28 +160,6 @@
     "linkedin": "LinkedIn: ORBIT",
     "copyright": "© 2025 ORBIT. All rights reserved.",
     "madeWith": "Crafted with passion in Algeria 🇩🇿"
-  },
-  "modal": {
-    "titleContact": "Contact the ORBIT Team",
-    "titleTrial": "Join the Beta Launch",
-    "subtitleContact": "Fill in your details, an event advisor will reach out in hours",
-    "subtitleTrial": "Get instant free access to power your upcoming event",
-    "nameLabel": "Full Name",
-    "namePlaceholder": "E.g. Youcef Maamri",
-    "phoneLabel": "Phone Number (WhatsApp)",
-    "emailLabel": "Email Address",
-    "eventLabel": "Event / Organization Name",
-    "eventPlaceholder": "E.g. AI & Tech Summit 2025",
-    "attendeesLabel": "Expected Attendees",
-    "opt1": "Under 100 attendees (Starter Free)",
-    "opt2": "100 - 500 attendees",
-    "opt3": "500 - 1,000 attendees (Professional)",
-    "opt4": "Over 1,000 attendees (Enterprise)",
-    "submitBtn": "Confirm & Reserve Beta Access",
-    "successTitle": "Request Received Successfully!",
-    "successMsg": "Thank you. Your event is registered among the first organizers getting free beta access.",
-    "whatsappAlert": "💬 You will receive your activation link on WhatsApp",
-    "backBtn": "Back to Website"
   },
   "lang": {
     "ar": "العربية",

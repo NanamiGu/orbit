@@ -7,12 +7,9 @@ import WhoItsFor from "../Components/WhoItsFor";
 import PricingSection from "../Components/PricingSection";
 import FinalCTA from "../Components/FinalCTA";
 import Footer from "../Components/Footer";
-import ActionModal from "../Components/ActionModal";
 
 export default function Landingpage() {
   const [scrolled, setScrolled] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalIntent, setModalIntent] = useState("ابدأ مجاناً");
 
   useEffect(() => {
     function handleScroll() {
@@ -23,58 +20,33 @@ export default function Landingpage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleOpenActionModal = (intent = "ابدأ مجاناً") => {
-    setModalIntent(intent);
-    setModalOpen(true);
-  };
-
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-emerald-500/30 selection:text-emerald-200">
       {/* 1. NAVBAR */}
-      <Navbar 
-        scrolled={scrolled} 
-        onOpenActionModal={handleOpenActionModal} 
-      />
+      <Navbar scrolled={scrolled} />
 
       <main>
         {/* 2. HERO */}
-        <Hero 
-          onOpenActionModal={handleOpenActionModal} 
-        />
+        <Hero />
 
-        {/* 3. SOCIAL PROOF BAR */}
-
-        {/* 4. FEATURES */}
+        {/* 3. FEATURES */}
         <Features />
 
-        {/* 5. HOW IT WORKS */}
+        {/* 4. HOW IT WORKS */}
         <HowItWorks />
 
-        {/* 6. WHO IT'S FOR */}
+        {/* 5. WHO IT'S FOR */}
         <WhoItsFor />
 
-        {/* 7. PRICING */}
-        <PricingSection 
-          onOpenActionModal={handleOpenActionModal} 
-        />
+        {/* 6. PRICING */}
+        <PricingSection />
 
-        {/* 8. FINAL CTA */}
-        <FinalCTA 
-          onOpenActionModal={handleOpenActionModal} 
-        />
+        {/* 7. FINAL CTA */}
+        <FinalCTA />
       </main>
 
-      {/* 9. FOOTER */}
-      <Footer 
-        onOpenActionModal={handleOpenActionModal} 
-      />
-
-      {/* Action / Trial Signup Modal */}
-      <ActionModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        initialIntent={modalIntent}
-      />
+      {/* 8. FOOTER */}
+      <Footer />
     </div>
   );
 }

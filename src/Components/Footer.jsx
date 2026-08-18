@@ -3,7 +3,7 @@ import { Mail, MessageSquare } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import OrbitLogo from './OrbitLogo';
 
-export default function Footer({ onOpenActionModal }) {
+export default function Footer() {
   const { t } = useTranslation();
 
   return (
@@ -53,12 +53,7 @@ export default function Footer({ onOpenActionModal }) {
               <li>
                 <a 
                   href="#faq"
-                  onClick={(e) => {
-                    if (onOpenActionModal) {
-                      e.preventDefault();
-                      onOpenActionModal(t("footer.linkFaq"));
-                    }
-                  }}
+                 
                   className="hover:text-emerald-400 transition-colors cursor-pointer"
                 >
                   {t("footer.linkFaq")}
@@ -82,12 +77,7 @@ export default function Footer({ onOpenActionModal }) {
               <li>
                 <a 
                   href="#contact"
-                  onClick={(e) => {
-                    if (onOpenActionModal) {
-                      e.preventDefault();
-                      onOpenActionModal(t("footer.linkContact"));
-                    }
-                  }}
+                 
                   className="hover:text-emerald-400 transition-colors cursor-pointer"
                 >
                   {t("footer.linkContact")}
@@ -96,12 +86,7 @@ export default function Footer({ onOpenActionModal }) {
               <li>
                 <a 
                   href="#privacy"
-                  onClick={(e) => {
-                    if (onOpenActionModal) {
-                      e.preventDefault();
-                      onOpenActionModal(t("footer.linkPrivacy"));
-                    }
-                  }}
+                  
                   className="hover:text-emerald-400 transition-colors cursor-pointer"
                 >
                   {t("footer.linkPrivacy")}
@@ -110,12 +95,7 @@ export default function Footer({ onOpenActionModal }) {
               <li>
                 <a 
                   href="#terms"
-                  onClick={(e) => {
-                    if (onOpenActionModal) {
-                      e.preventDefault();
-                      onOpenActionModal(t("footer.linkTerms"));
-                    }
-                  }}
+                  
                   className="hover:text-emerald-400 transition-colors cursor-pointer"
                 >
                   {t("footer.linkTerms")}

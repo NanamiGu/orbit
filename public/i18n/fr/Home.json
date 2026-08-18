@@ -33,16 +33,6 @@
     "simWhatsappBody": "Le pass QR et le lien d'accès ont été envoyés instantanément au participant.",
     "simBadge": "🇩🇿 Conçu spécialement pour l'Algérie"
   },
-  "proof": {
-    "stat1Num": "3",
-    "stat1Label": "Organisations à Alger",
-    "stat2Num": "+20",
-    "stat2Label": "Événements pilotes",
-    "stat3Num": "0",
-    "stat3Label": "Feuille imprimée",
-    "stat4Num": "< 2 s",
-    "stat4Label": "Temps moyen de scan"
-  },
   "features": {
     "label": "Ce que propose ORBIT",
     "headline": "Tout ce dont vous avez besoin pour gérer votre événement au même endroit",
@@ -169,28 +159,6 @@
     "linkedin": "LinkedIn: ORBIT",
     "copyright": "© 2025 ORBIT. Tous droits réservés.",
     "madeWith": "Fait avec passion en Algérie 🇩🇿"
-  },
-  "modal": {
-    "titleContact": "Contacter l'équipe ORBIT",
-    "titleTrial": "Rejoindre le lancement bêta",
-    "subtitleContact": "Renseignez vos coordonnées, un conseiller vous répondra sous quelques heures",
-    "subtitleTrial": "Accédez gratuitement à la plateforme pour votre prochain événement",
-    "nameLabel": "Nom complet",
-    "namePlaceholder": "Ex: Youcef Maamri",
-    "phoneLabel": "Numéro de téléphone (WhatsApp)",
-    "emailLabel": "Adresse email",
-    "eventLabel": "Nom de l'événement / Organisme",
-    "eventPlaceholder": "Ex: Conférence IA & Tech 2025",
-    "attendeesLabel": "Nombre prévisionnel de participants",
-    "opt1": "Moins de 100 participants (Forfait Basique Gratuit)",
-    "opt2": "100 - 500 participants",
-    "opt3": "500 - 1 000 participants (Forfait Professionnel)",
-    "opt4": "Plus de 1 000 participants (Forfait Entreprise)",
-    "submitBtn": "Confirmer et réserver l'accès bêta",
-    "successTitle": "Demande enregistrée avec succès !",
-    "successMsg": "Merci. Votre événement a été enregistré parmi les premiers organisateurs bénéficiant de l'offre bêta gratuite.",
-    "whatsappAlert": "💬 Vous recevrez votre lien d'accès par WhatsApp",
-    "backBtn": "Retour au site"
   },
   "lang": {
     "ar": "العربية",

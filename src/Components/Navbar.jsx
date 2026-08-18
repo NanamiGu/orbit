@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import OrbitLogo from "./OrbitLogo";
 import LanguageSelector from "./LanguageSelector";
 
-export default function Navbar({ scrolled, onOpenActionModal }) {
+export default function Navbar({ scrolled }) {
   const { t, i18n } = useTranslation();
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const isRtl = i18n.language === "ar";
@@ -47,7 +47,7 @@ export default function Navbar({ scrolled, onOpenActionModal }) {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-slate-300 hover:text-white text-sm font-medium transition-colors hover:translate-y-[-1px] duration-150"
+                className="text-slate-300 hover:text-white text-sm font-medium transition-colors hover:-translate-y-px duration-150"
               >
                 {link.label}
               </a>
@@ -63,13 +63,7 @@ export default function Navbar({ scrolled, onOpenActionModal }) {
 
             <a
               href="#pricing"
-              onClick={(e) => {
-                if (onOpenActionModal) {
-                  e.preventDefault();
-                  onOpenActionModal(t("nav.cta"));
-                }
-              }}
-              className="group relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 transition-all duration-200 shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/35 active:scale-[0.98]"
+              className="group relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-slate-950 bg-linear-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 transition-all duration-200 shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/35 active:scale-[0.98]"
             >
               <span>{t("nav.cta")}</span>
               <ArrowIcon className={`w-4 h-4 transition-transform ${isRtl ? "group-hover:-translate-x-1" : "group-hover:translate-x-1"}`} />
@@ -108,17 +102,14 @@ export default function Navbar({ scrolled, onOpenActionModal }) {
             <div className="pt-2 flex flex-col gap-3">
               <LanguageSelector variant="mobile" />
 
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuIsOpen(false);
-                  if (onOpenActionModal) onOpenActionModal(t("nav.cta"));
-                }}
-                className="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 text-slate-950 font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20"
+              <a
+                href="#pricing"
+                onClick={() => setMobileMenuIsOpen(false)}
+                className="w-full py-3.5 px-5 rounded-xl bg-linear-to-r from-emerald-400 via-teal-300 to-cyan-400 text-slate-950 font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20"
               >
                 <span>{t("nav.cta")}</span>
                 <ArrowIcon className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </div>
         </div>
