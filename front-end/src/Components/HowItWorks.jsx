@@ -99,7 +99,6 @@ export default function HowItWorks() {
       ref={sectionRef}
       className="bg-[#050b14] border-t border-white/5 relative"
       id="how-it-works"
-      dir="rtl"
       style={{ height: '400vh' }}
     >
       {/* ── Sticky viewport panel ── */}
@@ -108,16 +107,15 @@ export default function HowItWorks() {
         {/* ── Title — always visible, sits above the card stack ── */}
         <div className="relative z-10 text-center max-w-3xl mx-auto px-4 pt-20 sm:pt-24 pb-4">
           <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-5">
-            كيف يعمل
+            {t("howItWorks.label")}
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-5 leading-tight">
-            فعاليتك جاهزة في 3 خطوات
+            {t("howItWorks.headline")}
           </h2>
 
           <p className="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            لقد صممنا المنصة لتكون الأسهل في الاستخدام. لا حاجة لخبرة تقنية معقدة،
-            فقط اتبع هذه الخطوات البسيطة وستكون جاهزاً لاستقبال ضيوفك.
+            {t("howItWorks.subline")}
           </p>
         </div>
 
