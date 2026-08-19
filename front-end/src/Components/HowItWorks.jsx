@@ -51,7 +51,7 @@ export default function HowItWorks() {
 
     return {
       position       : 'absolute',
-      bottom         : 28,          // resting distance from viewport bottom
+      bottom          :10 ,          // resting distance from viewport bottom
       left           : 0,
       right          : 0,
       zIndex         : 10 + idx,
