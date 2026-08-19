@@ -1,8 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
   plugins: [
     react({
       babel: {
@@ -27,6 +36,9 @@ export default defineConfig({
             // فصل مكتبة الأيقونات
             if (id.includes("lucide-react")) {
               return "lucide";
+            }
+            if (id.includes("framer-motion")) {
+              return "motion";
             }
           }
         },

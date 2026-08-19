@@ -8,6 +8,7 @@ import PricingSection from "../Components/PricingSection";
 import FinalCTA from "../Components/FinalCTA";
 import Footer from "../Components/Footer";
 
+
 export default function Landingpage() {
   const [scrolled, setScrolled] = useState(false);
 
