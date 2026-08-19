@@ -1,96 +1,159 @@
-import React from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { CalendarPlus, UserCheck, ShieldCheck, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+/**
+ * Ease-out cubic — used to give each card a natural deceleration
+ * as it slides into position from below.
+ */
+function easeOut(x) {
+  const c = Math.max(0, Math.min(1, x));
+  return 1 - Math.pow(1 - c, 4);
+}
+
 export default function HowItWorks() {
   const { t } = useTranslation();
+  const sectionRef = useRef(null);
+  const [progress, setProgress] = useState(0);
 
+  // ── Scroll tracker ──────────────────────────────────────────────
+  // Maps how far we've scrolled through this section (0 → 1).
+  // The section is 4× viewport tall, giving ample room for the
+  // three-card animation while the inner content stays sticky.
+  const onScroll = useCallback(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const scrollTop   = window.scrollY;
+    const offsetTop   = el.offsetTop;
+    const scrollable  = el.offsetHeight - window.innerHeight;
+    if (scrollable <= 0) return;
+    setProgress(Math.max(0, Math.min(1, (scrollTop - offsetTop) / scrollable)));
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [onScroll]);
+
+  // ── Card animation ──────────────────────────────────────────────
+  // Each card animates in during its 1/3 slice of scroll progress.
+  // Cards that arrive earlier get nudged upward (and very slightly
+  // scaled down) each time a later card lands on top.
+  function cardStyle(idx, total) {
+    const arrived = easeOut((progress - idx / total) * total);
+
+    // Accumulate push from every card that lands *after* this one
+    let push = 0;
+    for (let j = idx + 1; j < total; j++) {
+      push += easeOut((progress - j / total) * total);
+    }
+
+    return {
+      position       : 'absolute',
+      bottom         : 28,          // resting distance from viewport bottom
+      left           : 0,
+      right          : 0,
+      zIndex         : 10 + idx,
+      transformOrigin: 'bottom center',
+      // translateY: card enters from 110 % below → settles at 0 %
+      // nudge up: each later card pushes this one 44 px higher
+      // scale: very subtle shrink as it recedes into the stack
+      transform: `translateY(calc(${(1 - arrived) * 110}% - ${push * 44}px)) scale(${1 - push * 0.036})`,
+      opacity: arrived > 0.02 ? 1 : 0,
+    };
+  }
+
+  // ── Step data ───────────────────────────────────────────────────
   const steps = [
     {
-      num: t("howItWorks.step1Num"),
-      icon: <CalendarPlus className="w-6 h-6 text-emerald-400" />,
-      title: t("howItWorks.step1Title"),
-      body: t("howItWorks.step1Body"),
-      highlight: t("howItWorks.step1Highlight"),
+      num      : t('howItWorks.step1Num'),
+      icon     : <CalendarPlus className="w-6 h-6 text-emerald-400" />,
+      title    : t('howItWorks.step1Title'),
+      body     : t('howItWorks.step1Body'),
+      highlight: t('howItWorks.step1Highlight'),
     },
     {
-      num: t("howItWorks.step2Num"),
-      icon: <UserCheck className="w-6 h-6 text-teal-400" />,
-      title: t("howItWorks.step2Title"),
-      body: t("howItWorks.step2Body"),
-      highlight: t("howItWorks.step2Highlight"),
+      num      : t('howItWorks.step2Num'),
+      icon     : <UserCheck className="w-6 h-6 text-teal-400" />,
+      title    : t('howItWorks.step2Title'),
+      body     : t('howItWorks.step2Body'),
+      highlight: t('howItWorks.step2Highlight'),
     },
     {
-      num: t("howItWorks.step3Num"),
-      icon: <ShieldCheck className="w-6 h-6 text-cyan-400" />,
-      title: t("howItWorks.step3Title"),
-      body: t("howItWorks.step3Body"),
-      highlight: t("howItWorks.step3Highlight"),
+      num      : t('howItWorks.step3Num'),
+      icon     : <ShieldCheck className="w-6 h-6 text-cyan-400" />,
+      title    : t('howItWorks.step3Title'),
+      body     : t('howItWorks.step3Body'),
+      highlight: t('howItWorks.step3Highlight'),
     },
   ];
 
-return (
-    <section className="bg-slate-950 py-24 sm:py-32 relative border-t border-white/5" id="how-it-works">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  z-10 sticky top-24">
-        
-        {/* القسم الأول: العنوان في الأعلى وفي المنتصف */}
-        <div className="text-center  max-w-3xl mx-auto mb-16 sm:mb-24">
-          <div className="inline-flex  items-center gap-2 px-3.5 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-6">
-            <span>كيف يعمل</span>
+  return (
+    /*
+     * The section is intentionally 400 vh tall.
+     * The visible UI lives inside the sticky child — the extra
+     * height is purely scroll real-estate for the animation.
+     */
+    <section
+      ref={sectionRef}
+      className="bg-[#050b14] border-t border-white/5 relative"
+      id="how-it-works"
+      dir="rtl"
+      style={{ height: '400vh' }}
+    >
+      {/* ── Sticky viewport panel ── */}
+      <div className="sticky top-0 h-screen overflow-hidden">
+
+        {/* ── Title — always visible, sits above the card stack ── */}
+        <div className="relative z-10 text-center max-w-3xl mx-auto px-4 pt-20 sm:pt-24 pb-4">
+          <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-5">
+            كيف يعمل
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-5 leading-tight">
             فعاليتك جاهزة في 3 خطوات
           </h2>
-          
-          <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
-            لقد صممنا المنصة لتكون الأسهل في الاستخدام. لا حاجة لخبرة تقنية معقدة، فقط اتبع هذه الخطوات البسيطة وستكون جاهزاً لاستقبال ضيوفك.
+
+          <p className="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+            لقد صممنا المنصة لتكون الأسهل في الاستخدام. لا حاجة لخبرة تقنية معقدة،
+            فقط اتبع هذه الخطوات البسيطة وستكون جاهزاً لاستقبال ضيوفك.
           </p>
         </div>
 
-        {/* القسم الثاني: البطاقات في المنتصف تحت العنوان تتراكم فوق بعضها */}
-        {/* استخدمنا max-w-4xl لكي لا تكون البطاقات عريضة جداً ومزعجة للعين */}
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col gap-6 sm:gap-8 relative pb-24">
-            {steps.map((step, index) => (
-              <div
-                key={step.num}
-                // البطاقات تملك خاصية sticky لكي تتراكم 
-                className="group p-8 sm:p-10 rounded-3xl bg-slate-900 border border-white/10 hover:border-emerald-500/30 transition-all duration-300 flex flex-col justify-between shadow-2xl sticky"
-                style={{
-                  // تتوقف البطاقات تحت شريط التصفح (بمسافة 6rem) وتتراكم بمقدار 1.5rem
-                  top: `calc(22rem + ${index * 1.5}rem)`,
-                  zIndex: index + 10,
-                }}
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-8">
-                    <span className="text-3xl sm:text-4xl font-extrabold font-mono text-slate-700 group-hover:text-emerald-400/80 transition-colors">
-                      {step.num}
-                    </span>
-                    <div className="w-12 h-12 rounded-2xl bg-slate-800 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      {step.icon}
-                    </div>
+        {/* ── Cards — bottom-anchored, slide up & stack ── */}
+        {steps.map((step, i) => (
+          <div key={step.num} style={cardStyle(i, steps.length)}>
+            <div className="max-w-3xl mx-auto px-4">
+              <div className="w-full rounded-4xl bg-[#0b1120] border border-slate-800/80 p-8 sm:p-10 shadow-[0_-32px_90px_rgba(0,0,0,0.92)]">
+
+                {/* Step number + icon */}
+                <div className="flex items-start justify-between mb-6">
+                  <span className="text-5xl sm:text-6xl font-extrabold text-slate-800/60 select-none leading-none">
+                    {step.num}
+                  </span>
+                  <div className="w-14 h-14 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex items-center justify-center shrink-0">
+                    {step.icon}
                   </div>
-
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-start">
-                    {step.title}
-                  </h3>
-
-                  <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-6 text-start">
-                    {step.body}
-                  </p>
                 </div>
 
-                <div className="pt-4 border-t border-white/5 flex items-center gap-2 text-sm font-medium text-emerald-400">
-                  <Clock className="w-4 h-4" />
+                {/* Copy */}
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                  {step.title}
+                </h3>
+                <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
+                  {step.body}
+                </p>
+
+                {/* Highlight footer */}
+                <div className="mt-8 pt-5 border-t border-slate-800 flex items-center gap-2 text-sm font-semibold text-emerald-400">
+                  <Clock className="w-4 h-4 shrink-0" />
                   <span>{step.highlight}</span>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-
+        ))}
       </div>
     </section>
   );

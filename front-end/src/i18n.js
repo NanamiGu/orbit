@@ -1,9 +1,9 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import arHome from '../public/i18n/ar/Home.json';
-import frHome from '../public/i18n/fr/Home.json';
-import enHome from '../public/i18n/en/Home.json';
+import arHome from './locales/ar/Home.json';
+import frHome from './locales/fr/Home.json';
+import enHome from './locales/en/Home.json';
 
 const resources = {
   ar: {

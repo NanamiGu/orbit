@@ -1,5 +1,5 @@
 import React from 'react';
-import { QrCode, Globe, MessageCircle, BarChart3, Check } from 'lucide-react';
+import { QrCode, Globe, MessageCircle, BarChart3 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export default function Features() {
