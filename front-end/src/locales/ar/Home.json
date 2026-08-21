@@ -166,5 +166,32 @@
     "ar": "العربية",
     "fr": "Français",
     "en": "English"
+  },
+  "auth": {
+    "backToHome": "العودة للرئيسية",
+    "signupTitle": "أنشئ حسابك في أوربت",
+    "signupSubtitle": "ابدأ في بضع خطوات بسيطة",
+    "loginTitle": "مرحباً بك مجدداً في أوربت",
+    "loginSubtitle": "أدخل بيانات حسابك للمتابعة",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "name@company.com",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "••••••••",
+    "signupButton": "إنشاء الحساب",
+    "loginButton": "تسجيل الدخول",
+    "rememberMe": "تذكرني لمدة 30 يوماً",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+    "dontHaveAccount": "ليس لديك حساب؟",
+    "loginLink": "تسجيل الدخول",
+    "signupLink": "إنشاء حساب",
+    "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "invalidPassword": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+    "passwordsDontMatch": "كلمتا المرور غير متطابقتين",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة. يرجى المحاولة مجدداً.",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "passwordRequired": "كلمة المرور مطلوبة"
   }
 }

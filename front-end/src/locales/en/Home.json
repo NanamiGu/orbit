@@ -166,5 +166,32 @@
     "ar": "العربية",
     "fr": "Français",
     "en": "English"
+  },
+  "auth": {
+    "backToHome": "Back to home",
+    "signupTitle": "Create your Orbit Account",
+    "signupSubtitle": "Get started in just a few clicks",
+    "loginTitle": "Welcome back to Orbit",
+    "loginSubtitle": "Enter your credentials to continue",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "name@company.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "signupButton": "Create Account",
+    "loginButton": "Log In",
+    "rememberMe": "Remember me for 30 days",
+    "forgotPassword": "Forgot password?",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "loginLink": "Log in",
+    "signupLink": "Sign up",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPassword": "Password must be at least 6 characters",
+    "passwordsDontMatch": "Passwords do not match",
+    "invalidCredentials": "Incorrect email or password. Please try again.",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required"
   }
 }

@@ -165,5 +165,32 @@
     "ar": "العربية",
     "fr": "Français",
     "en": "English"
+  },
+  "auth": {
+    "backToHome": "Retour à l'accueil",
+    "signupTitle": "Créez votre compte Orbit",
+    "signupSubtitle": "Commencez en quelques clics seulement",
+    "loginTitle": "Bon retour sur Orbit",
+    "loginSubtitle": "Entrez vos identifiants pour continuer",
+    "emailLabel": "Adresse e-mail",
+    "emailPlaceholder": "nom@entreprise.com",
+    "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "Confirmer le mot de passe",
+    "confirmPasswordPlaceholder": "••••••••",
+    "signupButton": "Créer un compte",
+    "loginButton": "Se connecter",
+    "rememberMe": "Se souvenir de moi pendant 30 jours",
+    "forgotPassword": "Mot de passe oublié ?",
+    "alreadyHaveAccount": "Vous avez déjà un compte ?",
+    "dontHaveAccount": "Vous n'avez pas de compte ?",
+    "loginLink": "Se connecter",
+    "signupLink": "S'inscrire",
+    "invalidEmail": "Veuillez entrer une adresse e-mail valide",
+    "invalidPassword": "Le mot de passe doit comporter au moins 6 caractères",
+    "passwordsDontMatch": "Les mots de passe ne correspondent pas",
+    "invalidCredentials": "E-mail ou mot de passe incorrect. Veuillez réessayer.",
+    "emailRequired": "L'adresse e-mail est obligatoire",
+    "passwordRequired": "Le mot de passe est obligatoire"
   }
 }
