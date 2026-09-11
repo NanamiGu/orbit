@@ -24,11 +24,7 @@ export default function Footer() {
               {t("footer.tagline")}
             </p>
             
-            <div className="pt-2 flex items-center gap-3">
-              <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
-                {t("footer.algeriaPill")}
-              </span>
-            </div>
+           
           </div>
 
           {/* Links Column 1 — المنتج */}
@@ -149,9 +145,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 mt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>{t("footer.copyright")}</p>
-          <p className="flex items-center gap-1">
-            {t("footer.madeWith")}
-          </p>
+          
         </div>
 
       </div>

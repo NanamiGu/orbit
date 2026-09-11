@@ -144,7 +144,6 @@
   },
   "footer": {
     "tagline": "ORBIT — نظام إدارة الفعاليات المصنوع في الجزائر، للجزائر.",
-    "algeriaPill": "🇩🇿 مبني للمنظمين الجزائريين",
     "colProduct": "المنتج",
     "linkFeatures": "المميزات",
     "linkPricing": "الأسعار",
@@ -159,8 +158,7 @@
     "whatsapp": "واتساب: +213 550 00 00 00",
     "email": "contact@orbit.dz",
     "linkedin": "LinkedIn: ORBIT",
-    "copyright": "© 2025 ORBIT. جميع الحقوق محفوظة.",
-    "madeWith": "صُنع بحب في الجزائر 🇩🇿"
+    "copyright": "© 2025 ORBIT. جميع الحقوق محفوظة."
   },
   "lang": {
     "ar": "العربية",

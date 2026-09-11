@@ -144,7 +144,6 @@
   },
   "footer": {
     "tagline": "ORBIT — The event management operating system built in Algeria, for Algeria.",
-    "algeriaPill": "🇩🇿 Built for Algerian Organizers",
     "colProduct": "Product",
     "linkFeatures": "Features",
     "linkPricing": "Pricing",
@@ -159,8 +158,7 @@
     "whatsapp": "WhatsApp: +213 550 00 00 00",
     "email": "contact@orbit.dz",
     "linkedin": "LinkedIn: ORBIT",
-    "copyright": "© 2025 ORBIT. All rights reserved.",
-    "madeWith": "Crafted with passion in Algeria 🇩🇿"
+    "copyright": "© 2025 ORBIT. All rights reserved."
   },
   "lang": {
     "ar": "العربية",

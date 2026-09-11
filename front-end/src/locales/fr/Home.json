@@ -143,7 +143,7 @@
   },
   "footer": {
     "tagline": "ORBIT — La plateforme de gestion d'événements conçue en Algérie, pour l'Algérie.",
-    "algeriaPill": "🇩🇿 Conçu pour les organisateurs algériens",
+    "": "🇩🇿 Conçu pour les organisateurs algériens",
     "colProduct": "Produit",
     "linkFeatures": "Fonctionnalités",
     "linkPricing": "Tarifs",
@@ -158,8 +158,7 @@
     "whatsapp": "WhatsApp: +213 550 00 00 00",
     "email": "contact@orbit.dz",
     "linkedin": "LinkedIn: ORBIT",
-    "copyright": "© 2025 ORBIT. Tous droits réservés.",
-    "madeWith": "Fait avec passion en Algérie 🇩🇿"
+    "copyright": "© 2025 ORBIT. Tous droits réservés."
   },
   "lang": {
     "ar": "العربية",
