@@ -1,15 +1,27 @@
-const express = require('express');
- const app = express()
-const conectdb=require("./config/db")
-const routeuser=require("./routes/userRoute")
+const express = require("express");
+const cors = require("cors");
 
-app.use(express.json())
-conectdb()
-app.get("/",(req,res)=>{
-    res.end("<h1>hi thar </h1>")
-})
-app.use("/api/user",routeuser)
-app.listen(5000,()=>{
+const connectdb = require("./config/db");
+const routeUser = require("./routes/userRoute");
 
-    console.log("server run")
-})
+const app = express();
+
+// Middleware
+app.use(express.json());
+app.use(cors());
+
+// Database
+connectdb();
+
+// Test route
+app.get("/", (req, res) => {
+    res.send("<h1>Hi there</h1>");
+});
+
+// User routes
+app.use("/api/user", routeUser);
+
+// Start server
+app.listen(5000, () => {
+    console.log("Server running on port 5000");
+});

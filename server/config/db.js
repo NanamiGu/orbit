@@ -1,9 +1,9 @@
 require("dotenv").config()
 const mongoose = require("mongoose")
 
-const dbconnect = ()=>{
+const dbconnect =async ()=>{
     try {
-        mongoose.connect(process.env.db)
+        await mongoose.connect(process.env.db)
         console.log("connect")
     } catch (error) {
         console.log("don't connect",error)

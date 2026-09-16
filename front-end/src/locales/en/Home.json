@@ -166,6 +166,15 @@
     "en": "English"
   },
   "auth": {
+    "nameLabel": "Name",
+    "namePlaceholder": "Amine",
+    "genderLabel": "Gender",
+    "genderPlaceholder": "Select your gender",
+    "genderOptions": {
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    },
     "backToHome": "Back to home",
     "signupTitle": "Create your Orbit Account",
     "signupSubtitle": "Get started in just a few clicks",
@@ -190,6 +199,8 @@
     "passwordsDontMatch": "Passwords do not match",
     "invalidCredentials": "Incorrect email or password. Please try again.",
     "emailRequired": "Email is required",
-    "passwordRequired": "Password is required"
+    "passwordRequired": "Password is required",
+    "confirmPasswordRequired": "Confirm password is required",
+    "signupFailed": "Failed to create account. Please try again."
   }
 }

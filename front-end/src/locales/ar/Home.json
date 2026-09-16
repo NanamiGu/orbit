@@ -166,6 +166,15 @@
     "en": "English"
   },
   "auth": {
+    "nameLabel": "الاسم",
+    "namePlaceholder": "أمين",
+    "genderLabel": "الجنس",
+    "genderPlaceholder": "اختر جنسك",
+    "genderOptions": {
+      "male": "ذكر",
+      "female": "أنثى",
+      "other": "آخر"
+    },
     "backToHome": "العودة للرئيسية",
     "signupTitle": "أنشئ حسابك في أوربت",
     "signupSubtitle": "ابدأ في بضع خطوات بسيطة",
@@ -190,6 +199,10 @@
     "passwordsDontMatch": "كلمتا المرور غير متطابقتين",
     "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة. يرجى المحاولة مجدداً.",
     "emailRequired": "البريد الإلكتروني مطلوب",
-    "passwordRequired": "كلمة المرور مطلوبة"
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
+    "nameRequired": "الاسم مطلوب",
+    "genderRequired": "الجنس مطلوب",
+    "signupFailed": "فشل إنشاء الحساب. يرجى المحاولة مجدداً."
   }
 }

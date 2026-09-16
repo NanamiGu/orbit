@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+﻿import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Button from "./Ui/button";
@@ -14,9 +14,11 @@ export default function Signup1({ className }) {
   const ArrowIcon = isRtl ? ArrowRight : ArrowLeft;
 
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
+   name: "",
+  email: "",
+  gender: "",
+  password: "",
+  confirmPassword: ""
   });
 
   const [errors, setErrors] = useState({
@@ -63,21 +65,78 @@ export default function Signup1({ className }) {
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = t("auth.passwordsDontMatch");
     }
+    if (!formData.name.trim()) {
+  newErrors.name = "Name is required";
+}
+
+if (!formData.gender) {
+  newErrors.gender = "Gender is required";
+}
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const isValid = validate();
-    if (!isValid) {
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // Validate form before sending data to the backend
+  const isValid = validate();
+
+  if (!isValid) {
+    triggerShake();
+    return;
+  }
+
+  try {
+    // Send signup data to the backend
+    const response = await fetch(
+      "http://localhost:5000/api/user/users",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          gender: formData.gender,
+          password: formData.password,
+        }),
+      }
+    );
+
+    // Convert backend response to JSON
+    const data = await response.json();
+
+    // Handle backend errors
+    if (!response.ok) {
+      setErrors((prev) => ({
+        ...prev,
+        general: data.message || t("auth.signupFailed"),
+      }));
+
       triggerShake();
       return;
     }
 
-    console.log("Signup submitted:", formData);
-  };
+    // Signup succeeded
+    console.log("Signup successful:", data);
+
+  } catch (error) {
+    // Handle network/server connection errors
+    console.error("Signup error:", error);
+
+    setErrors((prev) => ({
+      ...prev,
+      general: t("auth.signupFailed"),
+    }));
+
+    triggerShake();
+  }
+};
+
+
 
   return (
     <section className={cn("min-h-screen bg-slate-950 flex items-center justify-center p-4 text-slate-100 relative overflow-hidden", className)}>
@@ -127,6 +186,49 @@ export default function Signup1({ className }) {
             )}
             
             <form className="w-full space-y-4" onSubmit={handleSubmit} noValidate>
+              {/* Name */}
+              <div className="space-y-1.5 text-start">
+                <label className="text-xs font-medium text-slate-300">{t("auth.nameLabel")}</label>
+                <Input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => handleChange("name", e.target.value)}
+                  placeholder={t("auth.namePlaceholder")}
+                  className={cn(
+                    "text-sm bg-slate-950/60 transition-all",
+                    errors.name
+                      ? "border-red-500/80 bg-red-500/5 text-red-100 placeholder:text-red-300/40 focus-visible:ring-red-500/40"
+                      : "border-slate-800 focus-visible:ring-emerald-400"
+                  )}
+                />
+                {errors.name && (
+                  <p className="flex items-center gap-1.5 text-xs text-red-400 animate-in fade-in slide-in-from-top-1">
+                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                    <span>{errors.name}</span>
+                  </p>
+                )}
+                </div>
+                {/* Gender */}
+                <div>
+                <div className="space-y-1.5 text-start">
+                  <label className="text-xs font-medium text-slate-300">{t("auth.genderLabel")}</label>
+                  <select
+                    value={formData.gender}
+                    onChange={(e) => handleChange("gender", e.target.value)}
+                    className={cn(
+                      "text-sm bg-slate-950/60 transition-all",
+                      errors.gender
+                        ? "border-red-500/80 bg-red-500/5 text-red-100 placeholder:text-red-300/40 focus-visible:ring-red-500/40"
+                        : "border-slate-800 focus-visible:ring-emerald-400"
+                    )}
+                  >
+                    <option value="">{t("auth.genderPlaceholder")}</option>
+                    <option value="male">{t("auth.genderOptions.male")}</option>
+                    <option value="female">{t("auth.genderOptions.female")}</option>
+                    <option value="other">{t("auth.genderOptions.other")}</option>
+                  </select>
+                </div>  
+              </div>
               {/* Email */}
               <div className="space-y-1.5 text-start">
                 <label className="text-xs font-medium text-slate-300">{t("auth.emailLabel")}</label>
